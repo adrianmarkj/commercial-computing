@@ -201,10 +201,8 @@ if (isset($_POST['checkProfile'])){
             // Add into MySQL database
             if(!empty($sqlVal)) {
                 //new
-                $sql = "INSERT INTO MainImages (mainImages, hotelName) VALUES :sqlVal";
-                $stmt = $pdo->prepare($query);
-                $stmt->bindParam(":sqlVal", $sqlVal);
-                if($stmt->execute()) {
+                $sql = "INSERT INTO MainImages (mainImages, hotelName) VALUES $sqlVal";
+                if(mysqli_query($conn, $sql)) {
                     $response = array(
                         "status" => "alert-success",
                         "message" => "Files successfully uploaded."
