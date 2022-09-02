@@ -22,26 +22,31 @@ if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 }
 
-$query = "SELECT id, hotelName, email, fdContactNo, rContactNo, standard, deluxe, suite, standardPrice, deluxePrice, suitePrice, adultPrice, childPrice, profileCreated, profileVerified, safety1, safety2, safety3, safety4, description, hour, facilities FROM Hotels WHERE hotelName='$hotelName'";
-$result = mysqli_query($conn, $query);
-if (!$result) {
+$query = "SELECT id, hotelName, email, fdContactNo, rContactNo, standard, deluxe, suite, standardPrice, deluxePrice, suitePrice, adultPrice, childPrice, profileCreated, profileVerified, safety1, safety2, safety3, safety4, description, hour, facilities FROM Hotels WHERE hotelName= :hotelName";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(":hotelName", $hotelName);
+if (!$stmt->execute()) {
     echo "Database error: " . mysqli_error($conn); 
     die();
 }
-$data = mysqli_fetch_assoc($result);
-$query = "SELECT * FROM MainImages WHERE hotelName='$hotelName'";
-$result1 = mysqli_query($conn, $query);
-if (!$result1) {
+$result = $stmt->get_result();
+$data = $result->fetch_assoc();
+$query = "SELECT * FROM MainImages WHERE hotelName= :hotelName";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(":hotelName", $hotelName);
+if ($stmt->execute()) {
     echo "Database error: " . mysqli_error($conn); 
     die();
 }
-$query = "SELECT * FROM Users WHERE hotelName='$hotelName'";
-$result2 = mysqli_query($conn, $query);
-if (!$result1) {
+$query = "SELECT * FROM Users WHERE hotelName= :hotelName";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(":hotelName", $hotelName);
+if (!$stmt->execute()) {
     echo "Database error: " . mysqli_error($conn); 
     die();
 }
-$data2 = mysqli_fetch_assoc($result2);
+$result2 = $stmt->get_result();
+$data2 = $result2->fetch_assoc()
 $query = "SELECT * FROM StandardImages WHERE hotelName='$hotelName'";
 $result3 = mysqli_query($conn, $query);
 if (!$result3) {
