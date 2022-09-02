@@ -201,8 +201,10 @@ if (isset($_POST['checkProfile'])){
             // Add into MySQL database
             if(!empty($sqlVal)) {
                 //new
-                $sql = "INSERT INTO MainImages (mainImages, hotelName) VALUES $sqlVal";
-                if(mysqli_query($conn, $sql)) {
+                $sql = "INSERT INTO MainImages (mainImages, hotelName) VALUES :sqlVal";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":sqlVal", $sqlVal);
+                if($stmt->execute()) {
                     $response = array(
                         "status" => "alert-success",
                         "message" => "Files successfully uploaded."
@@ -263,8 +265,10 @@ if (isset($_POST['checkProfile'])){
                 // Add into MySQL database
                 if(!empty($sqlVal)) {
                     //new
-                    $sql = "INSERT INTO StandardImages (standardImages, hotelName) VALUES $sqlVal";
-                    if(mysqli_query($conn, $sql)) {
+                    $sql = "INSERT INTO StandardImages (standardImages, hotelName) VALUES :sqlVal";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(":sqlVal", $sqlVal);
+                    if($stmt->execute()) {
                         $response = array(
                             "status" => "alert-success",
                             "message" => "Files successfully uploaded."
@@ -324,8 +328,10 @@ if (isset($_POST['checkProfile'])){
                 // Add into MySQL database
                 if(!empty($sqlVal)) {
                     //new
-                    $sql = "INSERT INTO DeluxeImages (deluxeImages, hotelName) VALUES $sqlVal";
-                    if(mysqli_query($conn, $sql)) {
+                    $sql = "INSERT INTO DeluxeImages (deluxeImages, hotelName) VALUES :sqlVal";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(":sqlVal", $sqlVal);
+                    if($stmt->execute()) {
                         $response = array(
                             "status" => "alert-success",
                             "message" => "Files successfully uploaded."
@@ -385,8 +391,10 @@ if (isset($_POST['checkProfile'])){
                 // Add into MySQL database
                 if(!empty($sqlVal)) {
                     //new
-                    $sql = "INSERT INTO SuiteImages (suiteImages, hotelName) VALUES $sqlVal";
-                    if(mysqli_query($conn, $sql)) {
+                    $sql = "INSERT INTO SuiteImages (suiteImages, hotelName) VALUES :sqlVal";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(":sqlVal", $sqlVal);
+                    if($stmt->execute()) {
                         $response = array(
                             "status" => "alert-success",
                             "message" => "Files successfully uploaded."
