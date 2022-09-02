@@ -949,9 +949,12 @@ if (isset($_POST['checkForm'])) {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     $email = $_POST['email'];
-    $sql ="SELECT country FROM Users WHERE email='$email'";
-    $result = mysqli_query($conn, $sql);
-    $value = mysqli_fetch_assoc($result);
+    $sql ="SELECT country FROM Users WHERE email= :email";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $value = $result->fetch_assoc();
     $country = $value['country'];
     $hotelName = $_POST['hotelName'];
     $adultNo = $_POST['adultNo'];
@@ -961,8 +964,19 @@ if (isset($_POST['checkForm'])) {
     $outDate = $_POST['outDate'];
     $roomType = $_POST['r-type'];
     $cost = $_POST['price'];
-    $query = "INSERT INTO Bookings (email, hotelName, adultNo, childNo, roomNo, inDate, outDate, roomType, cost, country) VALUES ('$email', '$hotelName', '$adultNo', '$childNo', '$roomNo', '$inDate', '$outDate', '$roomType', '$cost', '$country')";
-    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+    $query = "INSERT INTO Bookings (email, hotelName, adultNo, childNo, roomNo, inDate, outDate, roomType, cost, country) VALUES (:email, :hotelName, :adultNo, :childNo, :roomNo, :inDate, :outDate, :roomType, :cost, :country)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":hotelName", $hotelName);
+    $stmt->bindParam(":adultNo", $adultNo);
+    $stmt->bindParam(":childNo", $childNo);
+    $stmt->bindParam(":roomNo", $roomNo);
+    $stmt->bindParam(":inDate", $inDate);
+    $stmt->bindParam(":outDate", $outDate);
+    $stmt->bindParam(":roomType", $roomType);
+    $stmt->bindParam(":cost", $cost);
+    $stmt->bindParam(":country", $country);
+    $stmt->execute();
     header("Location:index.php");
 }
 
