@@ -558,8 +558,10 @@ if (isset($_POST['updateProfile'])){
                 //new
                 $sql ="DELETE FROM MainImages WHERE hotelName='$hotelName'";
                 mysqli_query($conn, $sql);
-                $sql = "INSERT INTO MainImages (mainImages, hotelName) VALUES $sqlVal";
-                if(mysqli_query($conn, $sql)) {
+                $sql = "INSERT INTO MainImages (mainImages, hotelName) VALUES :sqlVal";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":sqlVal", $sqlVal);
+                if($stmt->execute()) {
                     $response = array(
                         "status" => "alert-success",
                         "message" => "Files successfully uploaded."
@@ -622,8 +624,10 @@ if (isset($_POST['updateProfile'])){
                     //new
                     $sql ="DELETE FROM StandardImages WHERE hotelName='$hotelName'";
                     mysqli_query($conn, $sql);
-                    $sql = "INSERT INTO StandardImages (standardImages, hotelName) VALUES $sqlVal";
-                    if(mysqli_query($conn, $sql)) {
+                    $sql = "INSERT INTO StandardImages (standardImages, hotelName) VALUES :sqlVal";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(":sqlVal", $sqlVal);
+                    if($stmt->execute()) {
                         $response = array(
                             "status" => "alert-success",
                             "message" => "Files successfully uploaded."
@@ -685,8 +689,10 @@ if (isset($_POST['updateProfile'])){
                     //new
                     $sql ="DELETE FROM DeluxeImages WHERE hotelName='$hotelName'";
                     mysqli_query($conn, $sql);
-                    $sql = "INSERT INTO DeluxeImages (deluxeImages, hotelName) VALUES $sqlVal";
-                    if(mysqli_query($conn, $sql)) {
+                    $sql = "INSERT INTO DeluxeImages (deluxeImages, hotelName) VALUES :sqlVal";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(":sqlVal", $sqlVal);
+                    if($stmt->execute()) {
                         $response = array(
                             "status" => "alert-success",
                             "message" => "Files successfully uploaded."
@@ -748,8 +754,10 @@ if (isset($_POST['updateProfile'])){
                     //new
                     $sql ="DELETE FROM SuiteImages WHERE hotelName='$hotelName'";
                     mysqli_query($conn, $sql);
-                    $sql = "INSERT INTO SuiteImages (suiteImages, hotelName) VALUES $sqlVal";
-                    if(mysqli_query($conn, $sql)) {
+                    $sql = "INSERT INTO SuiteImages (suiteImages, hotelName) VALUES :sqlVal";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(":sqlVal", $sqlVal);
+                    if($stmt->execute()) {
                         $response = array(
                             "status" => "alert-success",
                             "message" => "Files successfully uploaded."
@@ -927,8 +935,10 @@ if (isset($_POST['updateProfile'])){
 
 
     $textareaValue = trim($_POST['description']);
-    $sql ="UPDATE Hotels SET description='$textareaValue' WHERE hotelName='$hotelName'";
-    mysqli_query($conn, $sql);
+    $sql ="UPDATE Hotels SET description=:textareaValue WHERE hotelName='$hotelName'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":sqlVal", $sqlVal);
+    $stmt->execute();
     $sql ="UPDATE Hotels SET profileCreated=1 WHERE hotelName='$hotelName'";
     mysqli_query($conn, $sql);
     header("Location:hotelView.php");
