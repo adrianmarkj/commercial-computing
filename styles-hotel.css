@@ -1,0 +1,346 @@
+:root {
+    --primary-color: rgba(13, 110, 139, 0.75);
+    --overlay-color: rgba(24, 39, 51 , 0.85);
+    --menu-speed: 0.75s;
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* NEW NAVIGATION */
+
+.header#main{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(5, 1, 1, 0.3),rgba(6, 6, 6, 0.3)),url(images/lanka.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+
+.header{
+    min-height: 10vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(5, 1, 1, 0.3),rgba(6, 6, 6, 0.3));
+    background-size: cover;
+    background-position: center;
+}
+
+  
+.header .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    min-height: 12vh;
+    min-width: 100%;
+    z-index: 10;
+    background: linear-gradient(100deg,#2980b9, #651288);
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+    
+  }
+
+  .header .container h1{
+    font-family: 'Poppins', sans-serif;
+    font-size: 51px;
+    font-weight: 20;
+    justify-content: space-between;
+    text-align: center;
+    color: #fff;
+    padding-top: 50vh;
+  }
+  
+  .header .navigation .logo{
+    margin-left: 50px;
+  }
+  
+  .header .navigation .logo h1{
+    color: #b1d4e0;
+    font-size: 30px;
+    line-height: 38px;
+  }
+  
+  .header .navigation .menu-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+    margin: auto 20px auto 0;
+  }
+  
+  .header .navigation .humbarger {
+    margin-right: 20px;
+    display: none;
+   }
+   
+  .header .navigation .humbarger .bar{
+    width: 30px;
+    height: 2px;
+    margin: 7px;
+    background: #ffff;
+   }
+  
+  .header .navigation .menu-list li a {
+    color: #ffff;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 1s ease, border 1s ease;
+    text-decoration: none;
+  }
+
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(100deg,#2980b9, #8e44ad);
+    height: 110vh;
+    overflow: scroll;
+}
+
+/* Make the form aligned center */
+.container{
+    position: absolute;
+    margin-top: 15vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+}
+
+/* header center */
+.container h1{
+    margin-top: 2vh;
+    text-align: center;
+    padding: 0 0 20px 0;
+    font-size: 25px;
+    border-bottom: 0.5px solid silver;
+}
+
+/* padding to form */
+.container form{
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+/* align input boxes */
+form .input-box{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.input-box input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 10px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/* transition to label */
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 15px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+/* align input boxes */
+form .input-box{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.input-box input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 12px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+
+/* transition to label */
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 15px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+
+/* transition to span  */
+.input-box span::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 0;
+    height: 1px solid;
+    background: #2691d9;
+    transition: .5s;
+}
+
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label{
+    top: -5px;
+    color: #2691d9;
+}
+
+
+.input-box input:focus ~ span::before,
+.input-box input:valid ~ span::before{
+    width: 100%;
+}
+
+
+.pass a{
+    margin: -5px;
+    color: #adadad;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+
+.pass a:hover{
+    text-decoration: underline;
+}
+
+input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    margin-top: -18px;
+    border: 2px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="submit"]:hover{
+    border-color: #2691d9;
+    transition: .5s;
+}
+
+.text{
+    margin: 8px;
+    text-align: center;
+    font-size: 15px;
+    color: #666666;
+}
+
+.text a{
+    color: #2691d9;
+    text-decoration: none;
+}
+
+.text a:hover{
+    text-decoration: underline;
+}
+
+/* .nav-links .active::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--white);
+    transition: 0.5s;
+}
+
+.nav-links .active:hover::after{
+    left: 0;
+    width: 100%; */
+/* } */
+
+/* Hover effect */
+.active{
+    position: relative;
+}
+
+.active::after{
+    content: '';
+    /* change color of hover effect */
+    background: #651288;
+    width: 0;
+    height: 2px;
+    position: absolute;
+    left: 40%;
+    /* transform: translateX(0%); */
+    bottom: -5px;
+    border-radius: 2px;
+    transition: 0.5s;
+}
+
+.active:hover::after{
+    left: 0;
+    width: 100%;
+}
+
+.logo{
+    width: 200px;
+    margin-left: -55vh;
+    cursor: pointer;
+}
+
+.nav-links li{
+    list-style: none;
+    display: inline-block;
+    margin: 10px 30px;
+}
+
+.nav-links li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.register-btn{
+    background: #fff;
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    
+}
+
+.login-btn{
+    background: #fff;
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
