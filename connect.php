@@ -505,7 +505,10 @@ if (isset($_POST['checkProfile'])){
     }
 
     $textareaValue = trim($_POST['description']);
-    $sql ="UPDATE Hotels SET description='$textareaValue' WHERE hotelName='$hotelName'";
+    $sql ="UPDATE Hotels SET description= :textareaValue WHERE hotelName='$hotelName'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":textareaValue", $textareaValue);
+    $stmt->execute();
     mysqli_query($conn, $sql);
     $sql ="UPDATE Hotels SET profileCreated=1 WHERE hotelName='$hotelName'";
     mysqli_query($conn, $sql);
